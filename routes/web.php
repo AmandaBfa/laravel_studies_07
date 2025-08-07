@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// nossas routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/nova_pagina', [MainController::class, 'nova_pagina'])->name('nova_pagina');
+});
+// Route::get('/nova_pagina', [MainController::class, 'nova_pagina'])->name('nova_pagina')->middleware('auth'); ==> outro jeito de fazer
+
+
+require __DIR__ . '/auth.php';
